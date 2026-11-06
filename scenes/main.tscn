@@ -1,0 +1,100 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/grabber.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/items/onion.tscn" id="onion"]
+[ext_resource type="PackedScene" path="res://scenes/items/tomato.tscn" id="tomato"]
+[ext_resource type="PackedScene" path="res://scenes/items/potato.tscn" id="potato"]
+[ext_resource type="Texture2D" path="res://assets/sprites/background.svg" id="background"]
+[ext_resource type="Texture2D" path="res://assets/sprites/wood_wall.svg" id="wood"]
+[ext_resource type="Texture2D" path="res://assets/sprites/countertop.svg" id="countertop"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cabinet.svg" id="cabinet"]
+
+[sub_resource type="RectangleShape2D" id="floor_shape"]
+size = Vector2(1280, 40)
+
+[sub_resource type="RectangleShape2D" id="wall_shape"]
+size = Vector2(240, 10000)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Camera" type="Camera2D" parent="."]
+physics_interpolation_mode = 2
+position = Vector2(640, 360)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(0, -480)
+texture = ExtResource("background")
+centered = false
+
+[node name="Floor" type="StaticBody2D" parent="."]
+z_index = -1
+position = Vector2(640, 700)
+
+[node name="Shape" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("floor_shape")
+
+[node name="Sprite" type="Sprite2D" parent="Floor"]
+texture_repeat = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("countertop")
+region_enabled = true
+region_filter_clip_enabled = true
+region_rect = Rect2(0, 0, 7360, 80)
+
+[node name="Cabinet" type="Sprite2D" parent="."]
+z_index = -1
+texture_repeat = 2
+position = Vector2(640, 1720)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("cabinet")
+region_enabled = true
+region_filter_clip_enabled = true
+region_rect = Rect2(0, 0, 7360, 4000)
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+z_index = -1
+position = Vector2(120, -4300)
+
+[node name="Shape" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("wall_shape")
+
+[node name="Sprite" type="Sprite2D" parent="LeftWall"]
+texture_repeat = 2
+position = Vector2(-600, 10)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("wood")
+region_enabled = true
+region_filter_clip_enabled = true
+region_rect = Rect2(0, 0, 2880, 20040)
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+z_index = -1
+position = Vector2(1160, -4300)
+
+[node name="Shape" type="CollisionShape2D" parent="RightWall"]
+shape = SubResource("wall_shape")
+
+[node name="Sprite" type="Sprite2D" parent="RightWall"]
+texture_repeat = 2
+position = Vector2(600, 10)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("wood")
+flip_h = true
+region_enabled = true
+region_filter_clip_enabled = true
+region_rect = Rect2(0, 0, 2880, 20040)
+
+[node name="Onion" parent="." instance=ExtResource("onion")]
+position = Vector2(480, 640)
+
+[node name="Tomato" parent="." instance=ExtResource("tomato")]
+position = Vector2(640, 640)
+
+[node name="Potato" parent="." instance=ExtResource("potato")]
+position = Vector2(800, 640)
+
+[node name="Grabber" type="Node2D" parent="."]
+script = ExtResource("2")

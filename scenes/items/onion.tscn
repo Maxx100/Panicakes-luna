@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/item.tscn" id="item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/onion.svg" id="texture"]
+[ext_resource type="PackedScene" path="res://scenes/fx/flakes.tscn" id="fx"]
+
+[node name="Onion" instance=ExtResource("item")]
+radius = 30.0
+color = Color(0.93, 0.76, 0.9, 1)
+texture = ExtResource("texture")
+impact_effect = ExtResource("fx")

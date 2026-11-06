@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/item.tscn" id="item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/potato.svg" id="texture"]
+[ext_resource type="PackedScene" path="res://scenes/fx/dust.tscn" id="fx"]
+
+[node name="Potato" instance=ExtResource("item")]
+radius = 32.0
+color = Color(0.94, 0.8, 0.6, 1)
+texture = ExtResource("texture")
+impact_effect = ExtResource("fx")
